@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Post{% endblock %}
+
+{% block style %}
+    <style>
+        .container-background {
+            position: relative;
+            background-image: url("{{ post.image }}");
+            background-size: cover;
+            background-position: center;
+            height: 50vh; /* Make the container cover the entire viewport height */
+        }
+        .content-overlay {
+            text-align: start; /* Center-align the content */
+            padding: 2rem; /* Add padding to the content */
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- Main Content -->
+    <div class="container-fluid container-background"></div>
+    <div class="content-overlay">
+        <h1 class="display-4 fst-italic">{{ post.title }}</h1>
+        <p class="lead my-3">{{ post.description }}</p>
+        <p class="lead mb-0">by {{ post.author }}, {{ post.source }}</p>
+        <p class="lead mb-0">{{ post.date }}, {{ post.time }}</p>
+        <br>
+        <p class="lead mb-0"><a href="{{ post.url }}" class="text-body-secondary fw-bold">Continue reading...</a></p>
+    </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

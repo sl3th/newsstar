@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block style %}
+    <style>
+        .container-background {
+            position: relative;
+            background-image: url("{{ news[0]['image'] }}");
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+        }
+        .content-overlay {
+            position: absolute;
+            top: 50%;
+            left: 35%;
+            text-align: start; 
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <!-- First post -->
+    
+    <main class="container-fluid container-background">
+        <div class="content-overlay">
+            <h1 class="display-5 fst-italic">{{ news[0]['title'] }}</h1>
+        </div>
+    </main>
+
+    <!-- Main Content -->
+
+    <div class="container mt-5">
+        
+        <div class="row justify-content-center">
+            
+            {% for post in news: %}
+            {% if post.title != "[Removed]" %}
+            <div class="col m-1">
+                <div class="card shadow-sm " style="width: 18rem;">
+                    <img src="{{ post.image }}" class="card-img-top img-fluid" alt="{{ post.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="{{ url_for('show_post', index=post.id) }}" role="button" class="btn btn-sm btn-outline-info text-dark mt-1">View</a>
+                            <small class="text-body-secondary mt-1">{{ post.date }} / {{ post.time }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+        </div>
+
+    </div>
+
+
+{% endblock %}
